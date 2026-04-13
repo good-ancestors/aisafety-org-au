@@ -1,7 +1,17 @@
 # IDEs
 .idea/
+.vscode/
 
-# Hugo
-/resources/
-public/
-assets/jsconfig.json
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+.env.local
+
+# Node (defensive — no build step is used)
+node_modules/
+
+# Local-only Claude notes
+CLAUDE.local.md
