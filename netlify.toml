@@ -1,6 +1,6 @@
 [build]
-  command = ""
-  publish = "."
+  command = "mkdir -p _site && cp index.html _site/"
+  publish = "_site"
 
 [build.environment]
   HUGO_VERSION = ""
