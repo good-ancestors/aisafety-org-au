@@ -6,9 +6,10 @@
   <title>AI Safety in Australia</title>
   <meta name="description" content="AI Safety in Australia. Understand AI risks and connect with the Australian AI safety community.">
   <meta property="og:title" content="AI Safety in Australia">
-  <meta property="og:description" content="AI Safety in Australia. Understand AI risks and connect with the Australian AI safety community.">
+  <meta property="og:description" content="Safe and ethical advanced AI could bring unprecedented benefits. But AI is not safe by default, and Australians have a crucial role to play.">
   <meta property="og:url" content="https://aisafety.org.au">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://aisafety.org.au/images/sydney-hero.webp">
   <style>
     :root {
       --text: #1a1a1a;
@@ -17,6 +18,8 @@
       --link: #2563eb;
       --link-hover: #1e40af;
       --rule: #e5e7eb;
+      --hero-ink: #f8fafc;
+      --hero-ink-muted: #cbd5e1;
     }
     * { box-sizing: border-box; }
     html, body {
@@ -29,23 +32,60 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
+
+    .hero {
+      position: relative;
+      color: var(--hero-ink);
+      background-color: #0a1628;
+      background-image:
+        linear-gradient(rgba(10, 22, 40, 0.55), rgba(10, 22, 40, 0.85)),
+        url('images/sydney-hero.webp');
+      background-size: cover;
+      background-position: center 55%;
+      background-repeat: no-repeat;
+      padding: 5rem 1.5rem 4.5rem;
+    }
+    .hero-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      margin: 0 0 1.5rem;
+      color: var(--hero-ink);
+    }
+    .hero p {
+      font-size: 1.2rem;
+      line-height: 1.55;
+      margin: 0 0 0.9rem;
+      color: var(--hero-ink-muted);
+      max-width: 36em;
+    }
+    .hero p strong {
+      color: var(--hero-ink);
+      font-weight: 600;
+    }
+    .hero p:last-child { margin-bottom: 0; }
+
     main {
       max-width: 640px;
       margin: 0 auto;
       padding: 3rem 1.5rem 2rem;
     }
-    h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      margin: 0 0 1.5rem;
-      letter-spacing: -0.01em;
-    }
-    p {
-      margin: 0 0 1.25rem;
+    .definition-heading {
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 0.75rem;
     }
     .definition {
-      font-size: 1.1rem;
-      margin-bottom: 2.5rem;
+      font-size: 1.05rem;
+      margin: 0 0 2.5rem;
     }
     .links {
       list-style: none;
@@ -88,16 +128,26 @@
     footer a:focus {
       color: var(--text);
     }
-    @media (max-width: 480px) {
-      main { padding: 2rem 1.25rem 1.5rem; }
-      h1 { font-size: 1.6rem; }
+
+    @media (max-width: 640px) {
+      .hero { padding: 3.5rem 1.25rem 3rem; }
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 1.05rem; }
+      main { padding: 2.25rem 1.25rem 1.5rem; }
     }
   </style>
 </head>
 <body>
-  <main>
-    <h1>AI Safety in Australia</h1>
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>AI Safety in Australia</h1>
+      <p>Safe and ethical advanced AI could bring unprecedented benefits to humanity.</p>
+      <p><strong>But advanced AI is not safe by default.</strong></p>
+      <p>Australians have a crucial role to play in addressing the catastrophic risks from unsafe AI.</p>
+    </div>
+  </section>
 
+  <main>
     <!--
       Definition options. Only one should be uncommented as the live definition.
       The others are kept here as alternatives the owner can swap in.
@@ -118,6 +168,7 @@
       Mitigating the risk of extinction from AI should be a global priority alongside other societal-scale risks such as pandemics and nuclear war. AI safety is the work of understanding and addressing these risks through technical research, governance, and public advocacy.
     -->
 
+    <p class="definition-heading">What is AI safety?</p>
     <!-- Option F (live) — composite, concise -->
     <p class="definition">
       AI safety is the field of research and policy focused on ensuring advanced AI systems remain safe, controllable, and beneficial. This includes technical work on alignment and robustness, and governance work on the institutions and rules that shape how AI is developed and deployed.
@@ -144,6 +195,7 @@
 
     <footer>
       &copy; 2026 Alexander Saeri. Affiliated with <a href="https://goodancestors.org.au" target="_blank" rel="noopener">Good Ancestors</a>.<br>
+      Hero photo of Sydney by <a href="https://unsplash.com/@gillytanabose" target="_blank" rel="noopener">Gilly Tanabose</a> on Unsplash.<br>
       Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>.
     </footer>
   </main>
