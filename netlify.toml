@@ -1,27 +1,8 @@
 [build]
-  command = "hugo --gc --minify -b $URL"
-  publish = "public"
+  command = "mkdir -p _site/images && cp index.html favicon.svg favicon-32.png apple-touch-icon.png _site/ && cp images/sydney-hero.webp images/og-card.jpg _site/images/"
+  publish = "_site"
 
 [build.environment]
-  HUGO_VERSION = "0.97.3"
-  HUGO_ENABLEGITINFO = "true"
-
-[context.production.environment]
-  HUGO_ENV = "production"
-
-[context.deploy-preview]
-  command = "hugo --gc --minify --buildFuture -b $DEPLOY_PRIME_URL"
-
-[context.branch-deploy]
-  command = "hugo --gc --minify -b $DEPLOY_PRIME_URL"
-
-[[plugins]]
-  package = "netlify-plugin-hugo-cache-resources"
-  [plugins.inputs]
-    debug = true
-
-[[redirects]]
-  from = "/fundamentals-eoi"
-  to = "https://docs.google.com/forms/d/1UyIi554ipN6cUrpK3YxBFxVptUnbr8l2GgYsrmDfXrk/viewform"
-  status = 301
-  force = true 
+  HUGO_VERSION = ""
+  HUGO_ENABLEGITINFO = ""
+  HUGO_ENV = ""
