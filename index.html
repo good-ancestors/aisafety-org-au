@@ -10,6 +10,9 @@
   <meta property="og:url" content="https://aisafety.org.au">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://aisafety.org.au/images/sydney-hero.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --text: #1a1a1a;
@@ -27,7 +30,7 @@
       padding: 0;
       background: var(--bg);
       color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       font-size: 17px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
@@ -50,12 +53,14 @@
       margin: 0 auto;
     }
     .hero h1 {
-      font-size: 2.6rem;
+      font-family: 'Fraunces', Georgia, "Times New Roman", serif;
+      font-size: 3rem;
       font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.015em;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
       margin: 0 0 1.5rem;
       color: var(--hero-ink);
+      font-optical-sizing: auto;
     }
     .hero p {
       font-size: 1.2rem;
