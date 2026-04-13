@@ -1,2 +1,8 @@
 [build]
+  command = ""
   publish = "."
+
+[build.environment]
+  HUGO_VERSION = ""
+  HUGO_ENABLEGITINFO = ""
+  HUGO_ENV = ""
