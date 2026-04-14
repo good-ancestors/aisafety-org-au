@@ -18,33 +18,42 @@
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --text: #1a1a1a;
-      --muted: #555;
-      --bg: #ffffff;
-      --link: #2563eb;
-      --link-hover: #1e40af;
-      --rule: #e5e7eb;
-      --hero-ink: #f8fafc;
-      --hero-ink-muted: #cbd5e1;
+      --neutral-0:   #FFFFFF;
+      --neutral-50:  #FAFAF9;
+      --neutral-100: #F4F4F2;
+      --neutral-200: #E6E6E3;
+      --neutral-300: #D1D1CC;
+      --neutral-400: #A1A19A;
+      --neutral-500: #71716B;
+      --neutral-700: #3F3F3B;
+      --neutral-900: #171716;
+      --neutral-950: #0A0A09;
+      --accent-100:  #E6ECFB;
+      --accent-500:  #1F4FD9;
+      --accent-600:  #1A42B8;
+      --accent-700:  #163897;
     }
+
     * { box-sizing: border-box; }
+
     html, body {
       margin: 0;
       padding: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      font-size: 17px;
-      line-height: 1.6;
+      background: var(--neutral-0);
+      color: var(--neutral-900);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
       -webkit-font-smoothing: antialiased;
     }
 
+    /* Hero */
     .hero {
       position: relative;
-      color: var(--hero-ink);
+      color: var(--neutral-0);
       background-color: #0a1628;
       background-image:
         linear-gradient(rgba(10, 22, 40, 0.55), rgba(10, 22, 40, 0.85)),
@@ -52,99 +61,124 @@
       background-size: cover;
       background-position: center 55%;
       background-repeat: no-repeat;
-      padding: 5rem 1.5rem 4.5rem;
+      padding: 96px 32px;
     }
     .hero-inner {
       max-width: 720px;
       margin: 0 auto;
     }
     .hero h1 {
-      font-family: 'Fraunces', Georgia, "Times New Roman", serif;
-      font-size: 3rem;
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      margin: 0 0 1.5rem;
-      color: var(--hero-ink);
-      font-optical-sizing: auto;
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 52px;
+      letter-spacing: -0.03em;
+      margin: 0 0 24px;
+      color: var(--neutral-0);
     }
     .hero p {
-      font-size: 1.2rem;
-      line-height: 1.55;
-      margin: 0 0 0.9rem;
-      color: var(--hero-ink-muted);
+      font-size: 18px;
+      line-height: 28px;
+      letter-spacing: -0.005em;
+      margin: 0 0 12px;
+      color: var(--neutral-300);
       max-width: 36em;
     }
     .hero p strong {
-      color: var(--hero-ink);
-      font-weight: 600;
+      color: var(--neutral-0);
+      font-weight: 500;
     }
     .hero p:last-child { margin-bottom: 0; }
 
+    /* Main */
     main {
       max-width: 640px;
       margin: 0 auto;
-      padding: 3rem 1.5rem 2rem;
+      padding: 48px 32px 32px;
     }
+
     .definition-heading {
-      font-size: 1.05rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
-      color: var(--muted);
-      margin: 0 0 0.75rem;
+      color: var(--neutral-500);
+      margin: 0 0 12px;
     }
     .definition {
-      font-size: 1.05rem;
-      margin: 0 0 2.5rem;
+      font-size: 18px;
+      line-height: 28px;
+      letter-spacing: -0.005em;
+      color: var(--neutral-700);
+      margin: 0 0 48px;
     }
+
+    /* Links list */
     .links {
       list-style: none;
       padding: 0;
-      margin: 0 0 3rem;
-      border-top: 1px solid var(--rule);
+      margin: 0 0 48px;
+      border-top: 1px solid var(--neutral-200);
     }
     .links li {
-      padding: 1.25rem 0;
-      border-bottom: 1px solid var(--rule);
+      padding: 24px 0;
+      border-bottom: 1px solid var(--neutral-200);
     }
     .links a.link-label {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--link);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--accent-500);
       text-decoration: none;
+      transition: color 80ms cubic-bezier(0.2, 0, 0, 1);
     }
-    .links a.link-label:hover,
-    .links a.link-label:focus {
-      color: var(--link-hover);
+    .links a.link-label:hover {
+      color: var(--accent-600);
       text-decoration: underline;
+    }
+    .links a.link-label:focus-visible {
+      outline: 2px solid var(--accent-500);
+      outline-offset: 2px;
+      border-radius: 2px;
     }
     .links .desc {
       display: block;
-      margin-top: 0.25rem;
-      font-size: 0.95rem;
-      color: var(--muted);
+      margin-top: 4px;
+      font-size: 14px;
+      line-height: 20px;
+      color: var(--neutral-500);
     }
+
+    /* Footer */
     footer {
-      font-size: 0.85rem;
-      color: var(--muted);
-      border-top: 1px solid var(--rule);
-      padding-top: 1.25rem;
+      font-size: 14px;
+      line-height: 20px;
+      color: var(--neutral-500);
+      border-top: 1px solid var(--neutral-200);
+      padding-top: 24px;
     }
     footer a {
-      color: var(--muted);
+      color: var(--neutral-500);
       text-decoration: underline;
+      transition: color 80ms cubic-bezier(0.2, 0, 0, 1);
     }
-    footer a:hover,
-    footer a:focus {
-      color: var(--text);
+    footer a:hover {
+      color: var(--neutral-900);
+    }
+    footer a:focus-visible {
+      outline: 2px solid var(--accent-500);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .links a.link-label,
+      footer a { transition: none; }
     }
 
     @media (max-width: 640px) {
-      .hero { padding: 3.5rem 1.25rem 3rem; }
-      .hero h1 { font-size: 2rem; }
-      .hero p { font-size: 1.05rem; }
-      main { padding: 2.25rem 1.25rem 1.5rem; }
+      .hero { padding: 48px 16px; }
+      .hero h1 { font-size: 30px; line-height: 38px; letter-spacing: -0.02em; }
+      .hero p { font-size: 16px; line-height: 24px; letter-spacing: 0; }
+      main { padding: 32px 16px 24px; }
     }
   </style>
 </head>
@@ -205,7 +239,7 @@
     </ul>
 
     <footer>
-      Page maintained by Alexander Saeri, in affiliation with <a href="https://goodancestors.org.au" target="_blank" rel="noopener">Good Ancestors</a>.<br>
+      Page maintained by <a href="https://goodancestors.org.au" target="_blank" rel="noopener">Good Ancestors</a>.<br>
       Hero photo of Sydney by <a href="https://unsplash.com/@gillytanabose" target="_blank" rel="noopener">Gilly Tanabose</a> on Unsplash.<br>
       Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>.
     </footer>
