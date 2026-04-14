@@ -18,23 +18,25 @@
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Serif:wght@300;400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --neutral-0:   #FFFFFF;
-      --neutral-50:  #FAFAF9;
-      --neutral-100: #F4F4F2;
-      --neutral-200: #E6E6E3;
-      --neutral-300: #D1D1CC;
-      --neutral-400: #A1A19A;
-      --neutral-500: #71716B;
-      --neutral-700: #3F3F3B;
-      --neutral-900: #171716;
-      --neutral-950: #0A0A09;
-      --accent-100:  #E6ECFB;
-      --accent-500:  #1F4FD9;
-      --accent-600:  #1A42B8;
-      --accent-700:  #163897;
+      --white:       #ffffff;
+      --gray-10:     #f4f4f4;
+      --gray-20:     #e0e0e0;
+      --gray-30:     #c6c6c6;
+      --gray-50:     #8d8d8d;
+      --gray-60:     #6f6f6f;
+      --gray-70:     #525252;
+      --gray-80:     #393939;
+      --gray-90:     #262626;
+      --gray-100:    #161616;
+      --blue-60:     #0f62fe;
+      --blue-70:     #0043ce;
+      --blue-80:     #002d9c;
+
+      --container: 1200px;
+      --gutter: 32px;
     }
 
     * { box-sizing: border-box; }
@@ -42,206 +44,383 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: var(--neutral-0);
-      color: var(--neutral-900);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--white);
+      color: var(--gray-100);
+      font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 16px;
       line-height: 1.5;
+      font-weight: 400;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Hero */
+    a { color: inherit; }
+
+    /* ---------- Top bar ---------- */
+    .topbar {
+      border-bottom: 1px solid var(--gray-90);
+      background: var(--gray-100);
+      color: var(--white);
+    }
+    .topbar-inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .topbar-brand {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .topbar-brand span { font-weight: 300; color: var(--gray-30); }
+    .topbar-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--gray-50);
+      letter-spacing: 0.02em;
+    }
+
+    /* ---------- Hero ---------- */
     .hero {
       position: relative;
-      color: var(--neutral-0);
-      background-color: #0a1628;
+      color: var(--white);
+      background-color: var(--gray-100);
       background-image:
-        linear-gradient(rgba(10, 22, 40, 0.55), rgba(10, 22, 40, 0.85)),
+        linear-gradient(100deg, rgba(22, 22, 22, 0.92) 0%, rgba(22, 22, 22, 0.72) 55%, rgba(22, 22, 22, 0.55) 100%),
         url('images/sydney-hero.webp');
       background-size: cover;
       background-position: center 55%;
       background-repeat: no-repeat;
-      padding: 96px 32px;
+      border-bottom: 1px solid var(--gray-90);
     }
     .hero-inner {
-      max-width: 720px;
+      max-width: var(--container);
       margin: 0 auto;
+      padding: 96px var(--gutter) 112px;
+      display: grid;
+      grid-template-columns: 2fr 10fr;
+      gap: 32px;
     }
+    .hero-eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--gray-30);
+      text-transform: none;
+      margin: 6px 0 0;
+      padding-top: 12px;
+      border-top: 1px solid var(--gray-70);
+    }
+    .hero-body { max-width: 780px; }
     .hero h1 {
-      font-size: 48px;
-      font-weight: 600;
-      line-height: 52px;
-      letter-spacing: -0.03em;
-      margin: 0 0 24px;
-      color: var(--neutral-0);
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 64px;
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin: 0 0 32px;
+      color: var(--white);
+    }
+    .hero h1 em {
+      font-family: 'IBM Plex Serif', serif;
+      font-style: italic;
+      font-weight: 300;
     }
     .hero p {
       font-size: 18px;
       line-height: 28px;
-      letter-spacing: -0.005em;
+      letter-spacing: 0;
       margin: 0 0 12px;
-      color: var(--neutral-300);
-      max-width: 36em;
+      color: var(--gray-20);
+      max-width: 38em;
+      font-weight: 400;
     }
     .hero p strong {
-      color: var(--neutral-0);
+      color: var(--white);
       font-weight: 500;
     }
     .hero p:last-child { margin-bottom: 0; }
 
-    /* Main */
-    main {
-      max-width: 640px;
+    /* ---------- Section shell ---------- */
+    .section {
+      max-width: var(--container);
       margin: 0 auto;
-      padding: 48px 32px 32px;
+      padding: 0 var(--gutter);
     }
 
-    .definition-heading {
+    .section-row {
+      display: grid;
+      grid-template-columns: 2fr 10fr;
+      gap: 32px;
+      padding: 64px 0;
+      border-bottom: 1px solid var(--gray-20);
+    }
+    .section-row:last-of-type { border-bottom: 1px solid var(--gray-20); }
+
+    .section-label {
+      font-family: 'IBM Plex Mono', monospace;
       font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--neutral-500);
-      margin: 0 0 12px;
-    }
-    .definition {
-      font-size: 18px;
-      line-height: 28px;
-      letter-spacing: -0.005em;
-      color: var(--neutral-700);
-      margin: 0 0 48px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: var(--gray-60);
+      padding-top: 10px;
+      border-top: 1px solid var(--gray-100);
+      margin: 0;
     }
 
-    /* Links list */
+    .section-content { max-width: 780px; }
+
+    /* Definition */
+    .definition {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 24px;
+      line-height: 34px;
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      color: var(--gray-100);
+      margin: 0;
+      max-width: 32em;
+    }
+    .definition strong {
+      font-weight: 500;
+      color: var(--gray-100);
+    }
+
+    /* ---------- Links ---------- */
     .links {
       list-style: none;
       padding: 0;
-      margin: 0 0 48px;
-      border-top: 1px solid var(--neutral-200);
+      margin: 0;
+      border-top: 1px solid var(--gray-20);
     }
-    .links li {
+    .links li { border-bottom: 1px solid var(--gray-20); }
+    .links a {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: start;
       padding: 24px 0;
-      border-bottom: 1px solid var(--neutral-200);
-    }
-    .links a.link-label {
-      font-size: 16px;
-      font-weight: 500;
-      color: var(--accent-500);
       text-decoration: none;
-      transition: color 80ms cubic-bezier(0.2, 0, 0, 1);
+      color: var(--gray-100);
+      transition: background-color 120ms ease, padding 120ms ease;
     }
-    .links a.link-label:hover {
-      color: var(--accent-600);
-      text-decoration: underline;
+    .links a:hover {
+      background: var(--gray-10);
+      padding-left: 16px;
+      padding-right: 16px;
     }
-    .links a.link-label:focus-visible {
-      outline: 2px solid var(--accent-500);
-      outline-offset: 2px;
-      border-radius: 2px;
+    .links a:focus-visible {
+      outline: 2px solid var(--blue-60);
+      outline-offset: -2px;
     }
-    .links .desc {
+    .link-text { min-width: 0; }
+    .link-label {
       display: block;
-      margin-top: 4px;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 28px;
+      letter-spacing: -0.005em;
+      color: var(--gray-100);
+    }
+    .links a:hover .link-label { color: var(--blue-70); }
+    .link-desc {
+      display: block;
+      margin-top: 6px;
       font-size: 14px;
       line-height: 20px;
-      color: var(--neutral-500);
+      color: var(--gray-70);
+      max-width: 52em;
+    }
+    .link-arrow {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      margin-top: 6px;
+      color: var(--gray-50);
+      transition: transform 120ms ease, color 120ms ease;
+    }
+    .links a:hover .link-arrow {
+      color: var(--blue-60);
+      transform: translateX(4px);
     }
 
-    /* Footer */
-    footer {
+    /* ---------- Footer ---------- */
+    footer.site-footer {
+      border-top: 1px solid var(--gray-20);
+      margin-top: 0;
+      background: var(--white);
+    }
+    .footer-inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 48px var(--gutter) 64px;
+      display: grid;
+      grid-template-columns: 2fr 10fr;
+      gap: 32px;
+    }
+    .footer-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--gray-60);
+      padding-top: 10px;
+      border-top: 1px solid var(--gray-100);
+      margin: 0;
+    }
+    .footer-body {
       font-size: 14px;
-      line-height: 20px;
-      color: var(--neutral-500);
-      border-top: 1px solid var(--neutral-200);
-      padding-top: 24px;
+      line-height: 22px;
+      color: var(--gray-70);
+      max-width: 780px;
     }
-    footer a {
-      color: var(--neutral-500);
+    .footer-body p { margin: 0 0 8px; }
+    .footer-body p:last-child { margin-bottom: 0; }
+    .footer-body a {
+      color: var(--gray-70);
       text-decoration: underline;
-      transition: color 80ms cubic-bezier(0.2, 0, 0, 1);
+      text-underline-offset: 2px;
+      transition: color 120ms ease;
     }
-    footer a:hover {
-      color: var(--neutral-900);
-    }
-    footer a:focus-visible {
-      outline: 2px solid var(--accent-500);
+    .footer-body a:hover { color: var(--blue-70); }
+    .footer-body a:focus-visible {
+      outline: 2px solid var(--blue-60);
       outline-offset: 2px;
-      border-radius: 2px;
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .links a.link-label,
-      footer a { transition: none; }
+      .links a, .link-arrow, .footer-body a { transition: none; }
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      .hero-inner,
+      .section-row,
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .section-label,
+      .footer-label,
+      .hero-eyebrow {
+        padding-top: 8px;
+      }
     }
 
     @media (max-width: 640px) {
-      .hero { padding: 48px 16px; }
-      .hero h1 { font-size: 30px; line-height: 38px; letter-spacing: -0.02em; }
-      .hero p { font-size: 16px; line-height: 24px; letter-spacing: 0; }
-      main { padding: 32px 16px 24px; }
+      :root { --gutter: 16px; }
+      .hero-inner { padding: 56px var(--gutter) 64px; }
+      .hero h1 { font-size: 36px; line-height: 1.1; letter-spacing: -0.015em; margin-bottom: 24px; }
+      .hero p { font-size: 16px; line-height: 24px; }
+      .section-row { padding: 40px 0; }
+      .definition { font-size: 20px; line-height: 30px; }
+      .link-label { font-size: 18px; line-height: 26px; }
+      .links a:hover { padding-left: 12px; padding-right: 12px; }
+      .footer-inner { padding: 32px var(--gutter) 48px; }
     }
   </style>
 </head>
 <body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="topbar-brand" href="/">aisafety<span>.org.au</span></a>
+      <span class="topbar-meta">AU / EST. 2025</span>
+    </div>
+  </header>
+
   <section class="hero">
     <div class="hero-inner">
-      <h1>AI Safety in Australia</h1>
-      <p>Safe and ethical advanced AI could bring unprecedented benefits to humanity.</p>
-      <p><strong>But advanced AI is not safe by default.</strong></p>
-      <p>Australians have a crucial role to play in addressing the catastrophic risks from unsafe AI.</p>
+      <p class="hero-eyebrow">01 &mdash; Overview</p>
+      <div class="hero-body">
+        <h1>AI Safety<br>in <em>Australia</em>.</h1>
+        <p>Safe and ethical advanced AI could bring unprecedented benefits to humanity.</p>
+        <p><strong>But advanced AI is not safe by default.</strong></p>
+        <p>Australians have a crucial role to play in addressing the catastrophic risks from unsafe AI.</p>
+      </div>
     </div>
   </section>
 
   <main>
-    <!--
-      Definition options. Only one should be uncommented as the live definition.
-      The others are kept here as alternatives the owner can swap in.
 
-      Option A — from the previous aisafety.org.au site:
-      AI safety encompasses work to understand and address risks from increasingly capable AI systems. This includes both current harms and potential catastrophic risks from misaligned AI systems. AI governance focuses on institutions, policies, and decision-making processes that shape how AI is developed and deployed safely.
+    <div class="section">
+      <div class="section-row">
+        <p class="section-label">02 &mdash; Definition</p>
+        <div class="section-content">
+          <!-- Option F (live) — composite, concise -->
+          <p class="definition">
+            <strong>AI safety</strong> is the field of research and policy focused on ensuring advanced AI systems remain safe, controllable, and beneficial. This includes technical work on alignment and robustness, and governance work on the institutions and rules that shape how AI is developed and deployed.
+          </p>
+        </div>
+      </div>
 
-      Option B — from Wikipedia (drawing on multiple academic sources):
-      AI safety is an interdisciplinary field focused on preventing accidents, misuse, or other harmful consequences arising from artificial intelligence systems. It encompasses alignment research (ensuring AI systems behave as intended), monitoring AI systems for risks, and enhancing their robustness. Beyond technical research, AI safety involves developing norms and policies that promote safety.
+      <div class="section-row">
+        <p class="section-label">03 &mdash; Resources</p>
+        <div class="section-content">
+          <ul class="links">
+            <li>
+              <a href="https://www.aisafetyanz.com.au/" target="_blank" rel="noopener">
+                <span class="link-text">
+                  <span class="link-label">AI Safety Australia &amp; New Zealand</span>
+                  <span class="link-desc">Find AI safety careers, community, and knowledge in Australia and New Zealand.</span>
+                </span>
+                <svg class="link-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path d="M4 10h12M11 5l5 5-5 5" stroke-linecap="square" stroke-linejoin="miter"/>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.australiansforaisafety.com.au/" target="_blank" rel="noopener">
+                <span class="link-text">
+                  <span class="link-label">Australians for AI Safety</span>
+                  <span class="link-desc">Join thousands of everyday Australians advocating for government action on AI risks.</span>
+                </span>
+                <svg class="link-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path d="M4 10h12M11 5l5 5-5 5" stroke-linecap="square" stroke-linejoin="miter"/>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.goodancestors.org.au/" target="_blank" rel="noopener">
+                <span class="link-text">
+                  <span class="link-label">Good Ancestors</span>
+                  <span class="link-desc">Understand how evidence-based policy can address AI risks.</span>
+                </span>
+                <svg class="link-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path d="M4 10h12M11 5l5 5-5 5" stroke-linecap="square" stroke-linejoin="miter"/>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="https://internationalaisafetyreport.org/" target="_blank" rel="noopener">
+                <span class="link-text">
+                  <span class="link-label">International AI Safety Report</span>
+                  <span class="link-desc">Read about the science of AI safety, from an international coalition of scientists, backed by 30+ countries including Australia.</span>
+                </span>
+                <svg class="link-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path d="M4 10h12M11 5l5 5-5 5" stroke-linecap="square" stroke-linejoin="miter"/>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-      Option C — adapted from the International AI Safety Report 2026:
-      AI safety concerns the risks that arise from increasingly capable general-purpose AI systems — systems that can perform a wide variety of tasks across different contexts. These risks include misuse by malicious actors, malfunctions and unreliable behaviour, and broader societal disruption. AI safety research and governance aim to understand, prevent, and mitigate these harms.
-
-      Option D — adapted from the Center for AI Safety (safe.ai):
-      AI risk has emerged as a global priority, ranking alongside pandemics and nuclear war. AI safety is the field of research, policy, and advocacy focused on reducing societal-scale risks from AI — including risks from malicious use, loss of human control, competitive race dynamics, and organisational failures in AI development.
-
-      Option E — from the CAIS Statement on AI Risk (signed by 600+ experts):
-      Mitigating the risk of extinction from AI should be a global priority alongside other societal-scale risks such as pandemics and nuclear war. AI safety is the work of understanding and addressing these risks through technical research, governance, and public advocacy.
-    -->
-
-    <p class="definition-heading">What is AI safety?</p>
-    <!-- Option F (live) — composite, concise -->
-    <p class="definition">
-      AI safety is the field of research and policy focused on ensuring advanced AI systems remain safe, controllable, and beneficial. This includes technical work on alignment and robustness, and governance work on the institutions and rules that shape how AI is developed and deployed.
-    </p>
-
-    <ul class="links">
-      <li>
-        <a class="link-label" href="https://www.aisafetyanz.com.au/" target="_blank" rel="noopener">AI Safety Australia &amp; New Zealand</a>
-        <span class="desc">Find AI safety careers, community, and knowledge in Australia and New Zealand.</span>
-      </li>
-      <li>
-        <a class="link-label" href="https://www.australiansforaisafety.com.au/" target="_blank" rel="noopener">Australians for AI Safety</a>
-        <span class="desc">Join thousands of everyday Australians advocating for government action on AI risks.</span>
-      </li>
-      <li>
-        <a class="link-label" href="https://www.goodancestors.org.au/" target="_blank" rel="noopener">Good Ancestors</a>
-        <span class="desc">Understand how evidence-based policy can address AI risks.</span>
-      </li>
-      <li>
-        <a class="link-label" href="https://internationalaisafetyreport.org/" target="_blank" rel="noopener">International AI Safety Report</a>
-        <span class="desc">Read about the science of AI safety, from an international coalition of scientists, backed by 30+ countries including Australia.</span>
-      </li>
-    </ul>
-
-    <footer>
-      Page maintained by <a href="https://goodancestors.org.au" target="_blank" rel="noopener">Good Ancestors</a>.<br>
-      Hero photo of Sydney by <a href="https://unsplash.com/@gillytanabose" target="_blank" rel="noopener">Gilly Tanabose</a> on Unsplash.<br>
-      Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>.
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p class="footer-label">04 &mdash; Colophon</p>
+        <div class="footer-body">
+          <p>Page maintained by <a href="https://goodancestors.org.au" target="_blank" rel="noopener">Good Ancestors</a>.</p>
+          <p>Hero photo of Sydney by <a href="https://unsplash.com/@gillytanabose" target="_blank" rel="noopener">Gilly Tanabose</a> on Unsplash.</p>
+          <p>Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>.</p>
+        </div>
+      </div>
     </footer>
   </main>
 </body>
