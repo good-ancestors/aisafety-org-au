@@ -149,6 +149,119 @@
     }
     .hero p:last-child { margin-bottom: 0; }
 
+    /* ---------- Forum banner ---------- */
+    .forum-banner {
+      background: var(--blue-70);
+      color: var(--white);
+      border-bottom: 1px solid var(--blue-80);
+      position: relative;
+      overflow: hidden;
+    }
+    .forum-banner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 600px 300px at 90% 20%, rgba(255, 255, 255, 0.08), transparent 70%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, transparent 40%);
+      pointer-events: none;
+    }
+    .forum-banner a {
+      display: grid;
+      grid-template-columns: 2fr 10fr;
+      gap: 32px;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 56px var(--gutter);
+      text-decoration: none;
+      color: var(--white);
+      position: relative;
+      transition: background-color 120ms ease;
+    }
+    .forum-banner a:hover { background: rgba(255, 255, 255, 0.04); }
+    .forum-banner a:focus-visible {
+      outline: 2px solid var(--white);
+      outline-offset: -2px;
+    }
+    .forum-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--white);
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
+      margin: 0;
+    }
+    .forum-body { max-width: 780px; }
+    .forum-title {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 40px;
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin: 0 0 16px;
+      color: var(--white);
+    }
+    .forum-title em {
+      font-family: 'IBM Plex Serif', serif;
+      font-style: italic;
+      font-weight: 300;
+    }
+    .forum-tagline {
+      font-size: 16px;
+      line-height: 24px;
+      color: rgba(255, 255, 255, 0.9);
+      margin: 0 0 16px;
+      font-weight: 400;
+    }
+    .forum-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--white);
+      margin: 0 0 20px;
+    }
+    .forum-desc {
+      font-size: 15px;
+      line-height: 24px;
+      color: rgba(255, 255, 255, 0.88);
+      margin: 0 0 28px;
+      max-width: 52em;
+    }
+    .forum-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      background: var(--white);
+      color: var(--blue-70);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      transition: background-color 120ms ease, color 120ms ease, transform 120ms ease;
+    }
+    .forum-cta-url {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--blue-70);
+    }
+    .forum-banner a:hover .forum-cta {
+      background: var(--gray-100);
+      color: var(--white);
+    }
+    .forum-banner a:hover .forum-cta .forum-cta-url { color: var(--white); }
+    .forum-banner a:hover .forum-arrow { transform: translateX(4px); }
+    .forum-arrow {
+      width: 18px;
+      height: 18px;
+      color: currentColor;
+      transition: transform 120ms ease;
+    }
+
     /* ---------- Section shell ---------- */
     .section {
       max-width: var(--container);
@@ -302,13 +415,15 @@
     @media (max-width: 900px) {
       .hero-inner,
       .section-row,
-      .footer-inner {
+      .footer-inner,
+      .forum-banner a {
         grid-template-columns: 1fr;
         gap: 16px;
       }
       .section-label,
       .footer-label,
-      .hero-eyebrow {
+      .hero-eyebrow,
+      .forum-label {
         padding-top: 8px;
       }
     }
@@ -323,6 +438,8 @@
       .link-label { font-size: 18px; line-height: 26px; }
       .links a:hover { padding-left: 12px; padding-right: 12px; }
       .footer-inner { padding: 32px var(--gutter) 48px; }
+      .forum-banner a { padding: 40px var(--gutter); }
+      .forum-title { font-size: 28px; }
     }
   </style>
 </head>
@@ -345,6 +462,23 @@
       </div>
     </div>
   </section>
+
+  <aside class="forum-banner">
+    <a href="https://aisafetyforum.au" target="_blank" rel="noopener">
+      <p class="forum-label">Featured &mdash; AI Safety Forum 2026</p>
+      <div class="forum-body">
+        <h2 class="forum-title">Shaping Australia's role in <em>AI safety</em> and governance.</h2>
+        <p class="forum-meta">7&ndash;8 July 2026 &middot; Holme Building, The University of Sydney</p>
+        <p class="forum-desc">Join us for this two-day interdisciplinary forum grounded in the science of AI safety as explored in the International AI Safety Report, as we bring together people from across research, government, industry and civil society to shape Australia's role in AI safety.</p>
+        <span class="forum-cta">
+          Register at <span class="forum-cta-url">aisafetyforum.au</span>
+          <svg class="forum-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M4 10h12M11 5l5 5-5 5" stroke-linecap="square" stroke-linejoin="miter"/>
+          </svg>
+        </span>
+      </div>
+    </a>
+  </aside>
 
   <main>
 
