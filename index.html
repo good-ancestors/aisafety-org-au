@@ -149,6 +149,96 @@
     }
     .hero p:last-child { margin-bottom: 0; }
 
+    /* ---------- Forum banner ---------- */
+    .forum-banner {
+      background: var(--gray-100);
+      color: var(--white);
+      border-bottom: 1px solid var(--gray-90);
+    }
+    .forum-banner a {
+      display: grid;
+      grid-template-columns: 2fr 10fr;
+      gap: 32px;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 48px var(--gutter);
+      text-decoration: none;
+      color: var(--white);
+      transition: background-color 120ms ease;
+    }
+    .forum-banner a:hover { background: var(--gray-90); }
+    .forum-banner a:focus-visible {
+      outline: 2px solid var(--blue-60);
+      outline-offset: -2px;
+    }
+    .forum-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--gray-30);
+      padding-top: 10px;
+      border-top: 1px solid var(--gray-70);
+      margin: 0;
+    }
+    .forum-body { max-width: 780px; }
+    .forum-title {
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 32px;
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      margin: 0 0 12px;
+      color: var(--white);
+    }
+    .forum-title em {
+      font-family: 'IBM Plex Serif', serif;
+      font-style: italic;
+      font-weight: 300;
+    }
+    .forum-tagline {
+      font-size: 16px;
+      line-height: 24px;
+      color: var(--gray-20);
+      margin: 0 0 16px;
+      font-weight: 400;
+    }
+    .forum-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.02em;
+      color: var(--gray-30);
+      margin: 0 0 16px;
+    }
+    .forum-desc {
+      font-size: 14px;
+      line-height: 22px;
+      color: var(--gray-30);
+      margin: 0 0 20px;
+      max-width: 52em;
+    }
+    .forum-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--white);
+    }
+    .forum-cta-url {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      color: var(--gray-30);
+    }
+    .forum-banner a:hover .forum-cta { color: var(--blue-60); }
+    .forum-banner a:hover .forum-arrow { transform: translateX(4px); color: var(--blue-60); }
+    .forum-arrow {
+      width: 18px;
+      height: 18px;
+      color: var(--white);
+      transition: transform 120ms ease, color 120ms ease;
+    }
+
     /* ---------- Section shell ---------- */
     .section {
       max-width: var(--container);
@@ -302,13 +392,15 @@
     @media (max-width: 900px) {
       .hero-inner,
       .section-row,
-      .footer-inner {
+      .footer-inner,
+      .forum-banner a {
         grid-template-columns: 1fr;
         gap: 16px;
       }
       .section-label,
       .footer-label,
-      .hero-eyebrow {
+      .hero-eyebrow,
+      .forum-label {
         padding-top: 8px;
       }
     }
@@ -323,6 +415,8 @@
       .link-label { font-size: 18px; line-height: 26px; }
       .links a:hover { padding-left: 12px; padding-right: 12px; }
       .footer-inner { padding: 32px var(--gutter) 48px; }
+      .forum-banner a { padding: 32px var(--gutter); }
+      .forum-title { font-size: 24px; }
     }
   </style>
 </head>
@@ -345,6 +439,23 @@
       </div>
     </div>
   </section>
+
+  <aside class="forum-banner">
+    <a href="https://aisafetyforum.au" target="_blank" rel="noopener">
+      <p class="forum-label">Featured &mdash; AI Safety Forum 2026</p>
+      <div class="forum-body">
+        <h2 class="forum-title">Shaping Australia's role in <em>AI safety</em> and governance.</h2>
+        <p class="forum-meta">7&ndash;8 July 2026 &middot; Holme Building, The University of Sydney</p>
+        <p class="forum-desc">Join us for this two-day interdisciplinary forum grounded in the science of AI safety as explored in the International AI Safety Report, as we bring together people from across research, government, industry and civil society to shape Australia's role in AI safety.</p>
+        <span class="forum-cta">
+          Register at <span class="forum-cta-url">aisafetyforum.au</span>
+          <svg class="forum-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M4 10h12M11 5l5 5-5 5" stroke-linecap="square" stroke-linejoin="miter"/>
+          </svg>
+        </span>
+      </div>
+    </a>
+  </aside>
 
   <main>
 
