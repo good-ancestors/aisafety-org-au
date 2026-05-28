@@ -151,9 +151,20 @@
 
     /* ---------- Forum banner ---------- */
     .forum-banner {
-      background: var(--gray-100);
+      background: var(--blue-70);
       color: var(--white);
-      border-bottom: 1px solid var(--gray-90);
+      border-bottom: 1px solid var(--blue-80);
+      position: relative;
+      overflow: hidden;
+    }
+    .forum-banner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 600px 300px at 90% 20%, rgba(255, 255, 255, 0.08), transparent 70%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, transparent 40%);
+      pointer-events: none;
     }
     .forum-banner a {
       display: grid;
@@ -161,34 +172,36 @@
       gap: 32px;
       max-width: var(--container);
       margin: 0 auto;
-      padding: 48px var(--gutter);
+      padding: 56px var(--gutter);
       text-decoration: none;
       color: var(--white);
+      position: relative;
       transition: background-color 120ms ease;
     }
-    .forum-banner a:hover { background: var(--gray-90); }
+    .forum-banner a:hover { background: rgba(255, 255, 255, 0.04); }
     .forum-banner a:focus-visible {
-      outline: 2px solid var(--blue-60);
+      outline: 2px solid var(--white);
       outline-offset: -2px;
     }
     .forum-label {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 12px;
-      font-weight: 400;
-      letter-spacing: 0.04em;
-      color: var(--gray-30);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--white);
       padding-top: 10px;
-      border-top: 1px solid var(--gray-70);
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
       margin: 0;
     }
     .forum-body { max-width: 780px; }
     .forum-title {
       font-family: 'IBM Plex Sans', sans-serif;
-      font-size: 32px;
-      font-weight: 300;
+      font-size: 40px;
+      font-weight: 400;
       line-height: 1.1;
-      letter-spacing: -0.015em;
-      margin: 0 0 12px;
+      letter-spacing: -0.02em;
+      margin: 0 0 16px;
       color: var(--white);
     }
     .forum-title em {
@@ -199,44 +212,54 @@
     .forum-tagline {
       font-size: 16px;
       line-height: 24px;
-      color: var(--gray-20);
+      color: rgba(255, 255, 255, 0.9);
       margin: 0 0 16px;
       font-weight: 400;
     }
     .forum-meta {
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 12px;
+      font-size: 13px;
+      font-weight: 500;
       letter-spacing: 0.02em;
-      color: var(--gray-30);
-      margin: 0 0 16px;
+      color: var(--white);
+      margin: 0 0 20px;
     }
     .forum-desc {
-      font-size: 14px;
-      line-height: 22px;
-      color: var(--gray-30);
-      margin: 0 0 20px;
+      font-size: 15px;
+      line-height: 24px;
+      color: rgba(255, 255, 255, 0.88);
+      margin: 0 0 28px;
       max-width: 52em;
     }
     .forum-cta {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
+      padding: 12px 20px;
+      background: var(--white);
+      color: var(--blue-70);
       font-size: 14px;
-      font-weight: 500;
-      color: var(--white);
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      transition: background-color 120ms ease, color 120ms ease, transform 120ms ease;
     }
     .forum-cta-url {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 13px;
-      color: var(--gray-30);
+      font-weight: 500;
+      color: var(--blue-70);
     }
-    .forum-banner a:hover .forum-cta { color: var(--blue-60); }
-    .forum-banner a:hover .forum-arrow { transform: translateX(4px); color: var(--blue-60); }
+    .forum-banner a:hover .forum-cta {
+      background: var(--gray-100);
+      color: var(--white);
+    }
+    .forum-banner a:hover .forum-cta .forum-cta-url { color: var(--white); }
+    .forum-banner a:hover .forum-arrow { transform: translateX(4px); }
     .forum-arrow {
       width: 18px;
       height: 18px;
-      color: var(--white);
-      transition: transform 120ms ease, color 120ms ease;
+      color: currentColor;
+      transition: transform 120ms ease;
     }
 
     /* ---------- Section shell ---------- */
@@ -415,8 +438,8 @@
       .link-label { font-size: 18px; line-height: 26px; }
       .links a:hover { padding-left: 12px; padding-right: 12px; }
       .footer-inner { padding: 32px var(--gutter) 48px; }
-      .forum-banner a { padding: 32px var(--gutter); }
-      .forum-title { font-size: 24px; }
+      .forum-banner a { padding: 40px var(--gutter); }
+      .forum-title { font-size: 28px; }
     }
   </style>
 </head>
