@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Safety Forum — Lanyard</title>
+
+  <!--
+    ============================================================
+    AI Safety Forum — printable lanyard / name badge template
+    ============================================================
+
+    This is a standalone, dependency-free HTML template intended to be
+    rendered dynamically (one card per attendee) by the user-management
+    admin page. It is NOT part of the public landing page (index.html).
+
+    Card size is A6 portrait (105mm x 148mm) — a standard lanyard insert.
+    Print CSS hides the on-screen backdrop and prints the card edge-to-edge.
+
+    --- Dynamic fields (per attendee) -------------------------------------
+    Substitute these when rendering. They map to elements by class below:
+
+      .badge-category   -> ticket type / role, e.g. "ATTENDEE", "SPEAKER",
+                           "ORGANISER", "VOLUNTEER", "PRESS"
+      .badge-firstname  -> attendee first name, e.g. "Nathan"
+      .badge-lastname   -> attendee last name,  e.g. "Sherburn"
+      .badge-role       -> job title,           e.g. "Researcher and Operations Manager"
+      .badge-org        -> organisation,        e.g. "Good Ancestors"
+      img.badge-qr      -> set @src to a generated QR PNG/SVG that encodes the
+                           attendee's "connect" URL (vCard / profile link).
+                           The inline SVG below is only a visual placeholder.
+
+    --- Static elements ---------------------------------------------------
+      Forum logo, "CONNECT WITH ME" label, and the Australian Government
+      sponsor lockup + disclaimer are fixed for every badge.
+
+    To print a batch, the admin page can concatenate multiple
+    <div class="lanyard"> blocks (each wrapped in a .page) into one document.
+    ============================================================
+  -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --forum-blue:    #1f4fc7;   /* header band */
+      --forum-blue-dk: #1a44ad;   /* header band shading */
+      --accent-blue:   #1d4ed8;   /* category label */
+      --ink:           #1a1a1a;   /* name */
+      --ink-soft:      #2b2b2b;   /* footer band */
+      --muted:         #8a8a8a;   /* role / org */
+      --disclaimer:    #c9c9c9;   /* footer fine print */
+      --white:         #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Oswald', 'Arial Narrow', sans-serif;
+      background: #525252;            /* on-screen backdrop only */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* On-screen layout: center the card(s) on a neutral backdrop. */
+    .page {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    /* ---------- The card ---------- */
+    .lanyard {
+      width: 105mm;
+      height: 148mm;
+      background: var(--white);
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);   /* screen only */
+    }
+
+    /* ---------- Header band ---------- */
+    .lanyard-header {
+      background: var(--forum-blue);
+      background-image:
+        radial-gradient(ellipse 70% 120% at 100% 0%, rgba(255,255,255,0.10), transparent 60%),
+        linear-gradient(180deg, var(--forum-blue) 0%, var(--forum-blue-dk) 100%);
+      color: var(--white);
+      padding: 6mm 7mm 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 4mm;
+      flex: 0 0 auto;
+      height: 23mm;            /* fixed: lets the QR panel spill below the band */
+      overflow: visible;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Forum logo lockup */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 3mm;
+      padding-top: 1mm;
+    }
+    .logo-mark {
+      width: 10mm;
+      height: 10mm;
+      flex: 0 0 auto;
+    }
+    .logo-words { line-height: 1; }
+    .logo-top {
+      display: flex;
+      align-items: center;
+      gap: 2mm;
+      font-weight: 700;
+      font-size: 8.5mm;
+      letter-spacing: 0.01em;
+    }
+    .logo-rule {
+      width: 0.6mm;
+      height: 7mm;
+      background: rgba(255, 255, 255, 0.65);
+      display: inline-block;
+    }
+    .logo-forum {
+      font-weight: 500;
+      font-size: 4mm;
+      letter-spacing: 0.62em;
+      margin-top: 0.5mm;
+      padding-left: 0.3mm;
+    }
+
+    /* Connect-with-me panel */
+    .connect {
+      background: var(--white);
+      padding: 2mm 2mm 2mm;
+      width: 30mm;
+      flex: 0 0 auto;
+      text-align: center;
+    }
+    .connect-label {
+      color: var(--accent-blue);
+      font-weight: 700;
+      font-size: 3mm;
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+      text-transform: uppercase;
+      margin-bottom: 1.5mm;
+    }
+    .badge-qr {
+      display: block;
+      width: 26mm;
+      height: 26mm;
+      margin: 0 auto;
+    }
+
+    /* ---------- Identity ---------- */
+    .identity {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 4mm 7mm;
+      min-height: 0;
+    }
+    .badge-category {
+      color: var(--accent-blue);
+      font-weight: 700;
+      font-size: 7mm;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      align-self: flex-start;
+      margin-bottom: 4mm;
+    }
+    .badge-name {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 0.95;
+    }
+    .badge-firstname {
+      font-weight: 600;
+      font-size: 24mm;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+    .badge-lastname {
+      font-weight: 700;
+      font-size: 13mm;
+      letter-spacing: 0;
+      color: var(--ink);
+      margin-top: 1mm;
+    }
+    .badge-meta {
+      margin-top: 7mm;
+      color: var(--muted);
+      font-weight: 300;
+    }
+    .badge-role {
+      font-size: 6mm;
+      line-height: 1.15;
+    }
+    .badge-org {
+      font-size: 6mm;
+      line-height: 1.15;
+      margin-top: 1mm;
+    }
+
+    /* ---------- Sponsor footer ---------- */
+    .sponsor {
+      background: var(--ink-soft);
+      color: var(--white);
+      flex: 0 0 auto;
+      padding: 5mm 6mm;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 5mm;
+      align-items: center;
+      min-height: 26mm;
+    }
+    .gov-lockup {
+      display: flex;
+      align-items: center;
+      gap: 2.5mm;
+    }
+    .gov-crest {
+      width: 14mm;
+      height: 14mm;
+      flex: 0 0 auto;
+    }
+    .gov-text {
+      font-family: 'Times New Roman', Georgia, serif;
+      line-height: 1.05;
+      border-left: 0;
+    }
+    .gov-text .gov-line1 {
+      font-size: 4mm;
+      font-weight: 400;
+      border-bottom: 0.4mm solid var(--white);
+      padding-bottom: 0.6mm;
+      margin-bottom: 0.6mm;
+      white-space: nowrap;
+    }
+    .gov-text .gov-line2 {
+      font-size: 3.6mm;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .disclaimer {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 2.5mm;
+      line-height: 1.32;
+      color: var(--disclaimer);
+    }
+
+    /* ---------- Print ---------- */
+    @page {
+      size: A6 portrait;
+      margin: 0;
+    }
+    @media print {
+      html, body { background: var(--white); }
+      .page {
+        padding: 0;
+        page-break-after: always;
+        break-after: page;
+      }
+      .lanyard {
+        box-shadow: none;
+        width: 105mm;
+        height: 148mm;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page">
+    <div class="lanyard">
+
+      <!-- Header: forum logo + connect QR -->
+      <header class="lanyard-header">
+        <div class="logo">
+          <svg class="logo-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <circle cx="24" cy="24" r="22" fill="#fff"/>
+            <g stroke="var(--forum-blue)" stroke-width="2" fill="none">
+              <circle cx="24" cy="24" r="15"/>
+              <ellipse cx="24" cy="24" rx="6.5" ry="15"/>
+              <line x1="9" y1="24" x2="39" y2="24"/>
+              <line x1="11" y1="16" x2="37" y2="16"/>
+              <line x1="11" y1="32" x2="37" y2="32"/>
+            </g>
+          </svg>
+          <div class="logo-words">
+            <div class="logo-top">
+              <span>AI</span>
+              <span class="logo-rule"></span>
+              <span>SAFETY</span>
+            </div>
+            <div class="logo-forum">FORUM</div>
+          </div>
+        </div>
+
+        <div class="connect">
+          <div class="connect-label">Connect with me</div>
+          <!-- Replace src with a generated QR encoding the attendee's connect URL. -->
+          <img class="badge-qr" alt="QR code to connect"
+               src="data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 29 29' shape-rendering='crispEdges'&gt;&lt;rect width='29' height='29' fill='%23fff'/&gt;&lt;g fill='%23000'&gt;&lt;path d='M0 0h7v7h-7z M1 1h5v5h-5z M2 2h3v3h-3z'/&gt;&lt;path d='M22 0h7v7h-7z M23 1h5v5h-5z M24 2h3v3h-3z'/&gt;&lt;path d='M0 22h7v7h-7z M1 23h5v5h-5z M2 24h3v3h-3z'/&gt;&lt;rect x='9' y='1' width='1' height='1'/&gt;&lt;rect x='11' y='1' width='1' height='1'/&gt;&lt;rect x='12' y='2' width='1' height='1'/&gt;&lt;rect x='14' y='1' width='1' height='1'/&gt;&lt;rect x='16' y='2' width='1' height='1'/&gt;&lt;rect x='18' y='1' width='1' height='1'/&gt;&lt;rect x='19' y='3' width='1' height='1'/&gt;&lt;rect x='9' y='3' width='1' height='1'/&gt;&lt;rect x='10' y='4' width='1' height='1'/&gt;&lt;rect x='12' y='4' width='1' height='1'/&gt;&lt;rect x='15' y='4' width='1' height='1'/&gt;&lt;rect x='17' y='4' width='1' height='1'/&gt;&lt;rect x='19' y='5' width='1' height='1'/&gt;&lt;rect x='8' y='8' width='1' height='1'/&gt;&lt;rect x='10' y='8' width='1' height='1'/&gt;&lt;rect x='13' y='8' width='1' height='1'/&gt;&lt;rect x='15' y='8' width='1' height='1'/&gt;&lt;rect x='18' y='8' width='1' height='1'/&gt;&lt;rect x='20' y='8' width='1' height='1'/&gt;&lt;rect x='22' y='9' width='1' height='1'/&gt;&lt;rect x='24' y='9' width='1' height='1'/&gt;&lt;rect x='26' y='9' width='1' height='1'/&gt;&lt;rect x='28' y='10' width='1' height='1'/&gt;&lt;rect x='1' y='9' width='1' height='1'/&gt;&lt;rect x='3' y='9' width='1' height='1'/&gt;&lt;rect x='5' y='10' width='1' height='1'/&gt;&lt;rect x='0' y='11' width='1' height='1'/&gt;&lt;rect x='2' y='11' width='1' height='1'/&gt;&lt;rect x='4' y='12' width='1' height='1'/&gt;&lt;rect x='6' y='11' width='1' height='1'/&gt;&lt;rect x='9' y='10' width='1' height='1'/&gt;&lt;rect x='11' y='11' width='1' height='1'/&gt;&lt;rect x='13' y='12' width='1' height='1'/&gt;&lt;rect x='14' y='10' width='1' height='1'/&gt;&lt;rect x='16' y='11' width='1' height='1'/&gt;&lt;rect x='17' y='13' width='1' height='1'/&gt;&lt;rect x='19' y='12' width='1' height='1'/&gt;&lt;rect x='21' y='11' width='1' height='1'/&gt;&lt;rect x='23' y='12' width='1' height='1'/&gt;&lt;rect x='25' y='11' width='1' height='1'/&gt;&lt;rect x='27' y='12' width='1' height='1'/&gt;&lt;rect x='9' y='14' width='1' height='1'/&gt;&lt;rect x='11' y='14' width='1' height='1'/&gt;&lt;rect x='12' y='15' width='1' height='1'/&gt;&lt;rect x='14' y='14' width='1' height='1'/&gt;&lt;rect x='16' y='15' width='1' height='1'/&gt;&lt;rect x='18' y='14' width='1' height='1'/&gt;&lt;rect x='20' y='15' width='1' height='1'/&gt;&lt;rect x='8' y='16' width='1' height='1'/&gt;&lt;rect x='10' y='17' width='1' height='1'/&gt;&lt;rect x='13' y='16' width='1' height='1'/&gt;&lt;rect x='15' y='17' width='1' height='1'/&gt;&lt;rect x='22' y='14' width='1' height='1'/&gt;&lt;rect x='24' y='15' width='1' height='1'/&gt;&lt;rect x='26' y='14' width='1' height='1'/&gt;&lt;rect x='28' y='15' width='1' height='1'/&gt;&lt;rect x='9' y='19' width='1' height='1'/&gt;&lt;rect x='11' y='20' width='1' height='1'/&gt;&lt;rect x='13' y='19' width='1' height='1'/&gt;&lt;rect x='15' y='20' width='1' height='1'/&gt;&lt;rect x='17' y='19' width='1' height='1'/&gt;&lt;rect x='19' y='20' width='1' height='1'/&gt;&lt;rect x='21' y='19' width='1' height='1'/&gt;&lt;rect x='23' y='20' width='1' height='1'/&gt;&lt;rect x='25' y='19' width='1' height='1'/&gt;&lt;rect x='27' y='20' width='1' height='1'/&gt;&lt;rect x='9' y='22' width='1' height='1'/&gt;&lt;rect x='11' y='23' width='1' height='1'/&gt;&lt;rect x='13' y='22' width='1' height='1'/&gt;&lt;rect x='15' y='23' width='1' height='1'/&gt;&lt;rect x='17' y='22' width='1' height='1'/&gt;&lt;rect x='19' y='23' width='1' height='1'/&gt;&lt;rect x='22' y='22' width='5' height='5'/&gt;&lt;rect x='23' y='23' width='3' height='3' fill='%23fff'/&gt;&lt;rect x='24' y='24' width='1' height='1'/&gt;&lt;rect x='9' y='25' width='1' height='1'/&gt;&lt;rect x='11' y='26' width='1' height='1'/&gt;&lt;rect x='13' y='25' width='1' height='1'/&gt;&lt;rect x='15' y='26' width='1' height='1'/&gt;&lt;rect x='17' y='25' width='1' height='1'/&gt;&lt;rect x='19' y='26' width='1' height='1'/&gt;&lt;rect x='9' y='28' width='1' height='1'/&gt;&lt;rect x='12' y='28' width='1' height='1'/&gt;&lt;rect x='15' y='28' width='1' height='1'/&gt;&lt;rect x='18' y='28' width='1' height='1'/&gt;&lt;/g&gt;&lt;/svg&gt;">
+        </div>
+      </header>
+
+      <!-- Identity: category, name, role, org -->
+      <section class="identity">
+        <div class="badge-category">Attendee</div>
+        <div class="badge-name">
+          <span class="badge-firstname">Nathan</span>
+          <span class="badge-lastname">Sherburn</span>
+        </div>
+        <div class="badge-meta">
+          <div class="badge-role">Researcher and Operations Manager</div>
+          <div class="badge-org">Good Ancestors</div>
+        </div>
+      </section>
+
+      <!-- Sponsor footer (static) -->
+      <footer class="sponsor">
+        <div class="gov-lockup">
+          <!-- Placeholder crest. Replace with the official Commonwealth Coat of Arms asset. -->
+          <svg class="gov-crest" viewBox="0 0 60 60" fill="#fff" aria-hidden="true">
+            <path d="M30 2l1.6 3.4 3.7.4-2.7 2.5.7 3.6L30 10.6l-3.3 1.8.7-3.6-2.7-2.5 3.7-.4z"/>
+            <path d="M16 16h28v6c0 12-7 20-14 24-7-4-14-12-14-24z"/>
+            <path d="M16 16h28v6c0 12-7 20-14 24-7-4-14-12-14-24z" fill="none" stroke="#2b2b2b" stroke-width="1.2"/>
+            <line x1="30" y1="16" x2="30" y2="44" stroke="#2b2b2b" stroke-width="1.2"/>
+            <line x1="16" y1="26" x2="44" y2="26" stroke="#2b2b2b" stroke-width="1.2"/>
+            <path d="M6 30c2-3 5-4 8-3M54 30c-2-3-5-4-8-3" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M8 52c0-6 2-12 6-16M52 52c0-6-2-12-6-16" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+          </svg>
+          <div class="gov-text">
+            <div class="gov-line1">Australian Government</div>
+            <div class="gov-line2">Department of Industry,<br>Science and Resources</div>
+          </div>
+        </div>
+        <p class="disclaimer">
+          This event is sponsored by the Australian Government Department of Industry,
+          Science and Resources. The views expressed herein are not necessarily the views
+          of the Commonwealth of Australia, and the Commonwealth of Australia does not
+          accept responsibility for any information or advice contained herein.
+        </p>
+      </footer>
+
+    </div>
+  </div>
+
+</body>
+</html>
